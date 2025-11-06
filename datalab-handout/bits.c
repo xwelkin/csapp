@@ -268,7 +268,7 @@ int isLessOrEqual(int x, int y) {
  *   Max ops: 12
  *   Rating: 4 
  */
-//每次折半是否有1
+//二分
 int logicalNeg(int x) {
     int bit16 = x | ( x >> 16);
     int bit8 = bit16 | (bit16 >> 8);
@@ -294,8 +294,9 @@ int howManyBits(int x) {
     int b16, b8, b4, b2, b1, b0;
     int sign = x >> 31;
     x = (sign & ~x) | (~sign & x);
-    //负的时候取反
+    //负的时候取反 0...100
 
+    //二分查找最高1
     b16 = !!(x >> 16) << 4;
     x = x >> b16;
     b8 = !!(x >> 8) << 3;
@@ -388,6 +389,7 @@ int floatFloat2Int(unsigned uf) {
  *   Rating: 4
  */
 unsigned floatPower2(int x) {
+    //1.0 * 2^M
     int exp = x + 127;
     if (exp <= 0) return 0;
     if (exp >= 255) return 0xff << 23;
